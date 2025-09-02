@@ -1,0 +1,17 @@
+Package: chi2residuals
+Type: R-package 
+Title: compute and visualize chi2 residuals between two qualitative variables
+Version: 0.1.0
+Author: Christophe Desterke
+Maintainer: The package maintainer <christophe.desterke@gmail.com>
+Description: compute chi2 residuals between two qualitative variables
+    and visualized significant residuals by heatmap or network.
+License: GNU
+Encoding: UTF-8
+LazyData: true
+Imports: 
+      igraph,
+      dplyr,
+      scales,
+      ggplot2
+RoxygenNote: 7.3.2
