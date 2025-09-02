@@ -39,3 +39,16 @@ plotResiduals(residuals,
               title = "Significant residuals p<0.05")
 ```
 ![res](https://github.com/cdesterke/chi2residuals/blob/main/heatmap.png)
+
+
+### draw network of the results with significant residuals
+```r
+plotNet(residuals,
+        var1 = "AgeGroup",
+        var2 = "PrimarySymptom",
+        node_colors = c(AgeGroup = "green", PrimarySymptom = "skyblue"),
+        edge_colors = c(positive = "red", negative = "blue", nonsignificant = "lightgrey"))
+```
+![res](https://github.com/cdesterke/chi2residuals/blob/main/network.png)
+
+
