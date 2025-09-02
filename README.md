@@ -26,3 +26,16 @@ residuals <- computeResiduals(sub, col1 = "AgeGroup", col2 = "PrimarySymptom")
 ```
 ![res](https://github.com/cdesterke/chi2residuals/blob/main/residuals.png)
 
+### draw heatmap of the results with significant residuals
+```r
+plotResiduals(residuals,
+              col1 = "AgeGroup",
+              col2 = "PrimarySymptom",
+              themeSize = 20,
+              labelSize = 5,
+              colorLow = "turquoise",
+              colorHigh = "purple",
+              colorLabels = "white",
+              title = "Significant residuals p<0.05")
+```
+![res](https://github.com/cdesterke/chi2residuals/blob/main/heatmap.png)
