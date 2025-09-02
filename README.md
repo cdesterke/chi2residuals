@@ -49,6 +49,6 @@ plotNet(residuals,
         node_colors = c(AgeGroup = "green", PrimarySymptom = "skyblue"),
         edge_colors = c(positive = "red", negative = "blue", nonsignificant = "lightgrey"))
 ```
-![res](https://github.com/cdesterke/chi2residuals/blob/main/network.png)
+![res](https://github.com/cdesterke/chi2residuals/blob/main/net.png)
 
 
