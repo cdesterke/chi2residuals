@@ -1,5 +1,6 @@
 ## chi2residuals R-package
 
+The chi2residuals package provides tools to explore and visualize chi-square residuals between two qualitative variables. It helps identify significant associations and deviations from expected frequencies using intuitive plots.
 
 ### package installation
 ```r
@@ -52,3 +53,5 @@ plotNet(residuals,
 ![res](https://github.com/cdesterke/chi2residuals/blob/main/net.png)
 
 
+👉 [See the vignette for a full example](https://github.com/cdesterke/chi2residuals/blob/main/vignettes/chi2residuals-vignette.Rmd)
+👉 [See the vignette for a full example](https://github.com/cdesterke/chi2residuals/blob/main/vignettes/chi2residuals-vignette.html)
