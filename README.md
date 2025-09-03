@@ -54,4 +54,4 @@ plotNet(residuals,
 
 
 👉 [See the vignette for a full example](https://github.com/cdesterke/chi2residuals/blob/main/vignettes/chi2residuals-vignette.Rmd)
-👉 [See the vignette for a full example](https://github.com/cdesterke/chi2residuals/blob/main/vignettes/chi2residuals-vignette.html)
+
