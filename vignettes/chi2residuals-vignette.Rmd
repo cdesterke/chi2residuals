@@ -1,0 +1,99 @@
+---
+title: "Exploring Chi-Square Residuals with chi2residuals"
+author: "Christophe Desterke"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Exploring Chi-Square Residuals}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Overview
+
+The chi2residuals package provides tools to explore and visualize chi-square residuals between two qualitative variables. It helps identify significant associations and deviations from expected frequencies using intuitive plots.
+
+## Installation
+
+```{r}
+devtools::install_github("cdesterke/chi2residuals")
+library(chi2residuals)
+```
+
+## Example Dataset
+
+
+```{r}
+data(patients)
+str(patients)
+
+```
+
+We’ll explore the relationship between AgeGroup and PrimarySymptom.
+
+## Preprocessing
+
+```{r}
+sub <- preProcess(patients, v1 = "AgeGroup", v2 = "PrimarySymptom")
+head(sub)
+
+```
+
+## Computing Residuals
+
+```{r}
+residuals <- computeResiduals(sub, col1 = "AgeGroup", col2 = "PrimarySymptom")
+
+```
+
+## Heatmap Visualization
+
+```{r resplot, fig.width=9, fig.height=4.5}
+plotResiduals(
+  residuals,
+  col1 = "AgeGroup",
+  col2 = "PrimarySymptom",
+  themeSize = 18,
+  labelSize = 3.5,
+  colorLow = "turquoise",
+  colorHigh = "purple",
+  colorLabels = "white",
+  title = "Significant residuals (p < 0.05)"
+)
+
+```
+
+
+## Network Visualization
+
+```{r netplot, fig.width=10, fig.height=5}
+plotNet(
+  residuals,
+  var1 = "AgeGroup",
+  var2 = "PrimarySymptom",
+  node_colors = c(AgeGroup = "green", PrimarySymptom = "skyblue"),
+  edge_colors = c(positive = "red", negative = "blue", nonsignificant = "lightgrey")
+)
+
+```
+
+## Interpretation
+
+Chi-square residuals highlight deviations between observed and expected frequencies:
+
+🔴 Positive residuals: overrepresentation
+
+🔵 Negative residuals: underrepresentation
+
+⚪ Non-significant: consistent with independence
+
+These visualizations help quickly identify strong associations between categories.
+
+## Conclusion
+
+chi2residuals is a practical tool for exploratory analysis of categorical data. It simplifies the detection of meaningful relationships and enhances interpretability through visual summaries.
