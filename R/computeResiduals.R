@@ -16,10 +16,11 @@
 #'
 #' @export
 computeResiduals <- function(sub, col1 = "AgeGroup", col2 = "PrimarySymptom") {
+
+  # --- Vérifications préliminaires ---
   if (!requireNamespace("dplyr", quietly = TRUE)) {
     stop("Package 'dplyr' is required but not installed.")
   }
-  library(dplyr)
 
   data <- as.data.frame(sub)
 
@@ -37,24 +38,34 @@ computeResiduals <- function(sub, col1 = "AgeGroup", col2 = "PrimarySymptom") {
 
   message("✅ Columns are valid: character type and no missing values.")
 
+  # --- Table de contingence ---
   tab <- table(data[[col1]], data[[col2]])
   chi2 <- chisq.test(tab)
 
   print(tab)
   print(chi2)
 
+  # --- Résidus standardisés ---
   residuals_df <- as.data.frame(as.table(chi2$residuals))
   colnames(residuals_df) <- c(col1, col2, "resid")
   residuals_df$resid <- as.numeric(as.character(residuals_df$resid))
 
+  # --- Calcul p-value + label multi-ligne ---
   residuals_df <- residuals_df %>%
-    mutate(
+    dplyr::mutate(
       pval = 2 * (1 - pnorm(abs(resid))),
-      label = ifelse(pval < 0.05,
-                     paste0("r=", sprintf("%.2f", resid), ", p=", sprintf("%.3f", pval)),
-                     "")
+      label = ifelse(
+        pval < 0.05,
+        paste0(
+          "r=", sprintf("%.2f", resid), "\n",
+          "p=", sprintf("%.3f", pval)
+        ),
+        ""
+      )
     )
 
   print(residuals_df)
   return(residuals_df)
 }
+
+
