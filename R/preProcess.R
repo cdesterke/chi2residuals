@@ -22,7 +22,7 @@ preProcess <- function(data = patients, v1 = "AgeGroup", v2 = "PrimarySymptom") 
   data <- as.data.frame(data)
 
   sub <- data %>%
-    select(all_of(c(v1, v2))) %>%
+    dplyr::select(all_of(c(v1, v2))) %>%
     na.omit()
 
   return(sub)
